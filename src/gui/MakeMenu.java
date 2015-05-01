@@ -20,15 +20,24 @@ public class MakeMenu {
         // File menu - new, save, exit
         Menu failMenu = new Menu("Fail");
         MenuItem newMenuItem = new MenuItem("Uus");
+        MenuItem openMenuItem = new MenuItem("Ava");
         MenuItem saveMenuItem = new MenuItem("Salvesta");
         MenuItem exitMenuItem = new MenuItem("Välju");
-        exitMenuItem.setOnAction(actionEvent -> Platform.exit());
-
-        failMenu.getItems().addAll(newMenuItem, saveMenuItem,
+                
+        failMenu.getItems().addAll(newMenuItem, openMenuItem, saveMenuItem,
             new SeparatorMenuItem(), exitMenuItem);
 
         Menu abiMenu = new Menu("Abi");
+        MenuItem abiMenuItem = new MenuItem("Programmist");
 
+        abiMenu.getItems().add(abiMenuItem);
+        
         menuBar.getMenus().addAll(failMenu, abiMenu);
+        
+        
+        // sündmusete käsitlejad
+        exitMenuItem.setOnAction(actionEvent -> Platform.exit());
+        abiMenuItem.setOnAction(event -> InformationWindow.make());
+        
 	}
 }

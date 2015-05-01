@@ -1,9 +1,11 @@
 package gui;
 
+import eventHandlers.KeyboardHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
@@ -12,24 +14,27 @@ public class MakeTabs {
         
 		TabPane tabPane = new TabPane();
 
-        Tab mäng = new Tab();
-        mäng.setText("Mäng (F1)");
-        HBox hbox = new HBox();
-        hbox.getChildren().add(new Label("Tab"));
-        hbox.setAlignment(Pos.CENTER);
-        mäng.setContent(hbox);
+        Tab mäng = new Tab("Mäng (F1)");
+        mäng.setClosable(false);
+        mäng.setId("mäng");
+        //mäng.setContent();
+        
+        
+        Tab mängijad = new Tab("Mängijad (F2)");
+        mängijad.setClosable(false);
+        mängijad.setContent(MängijadTab.make());
+        
+        Tab võistkonnad = new Tab("Võistkonnad (F3)");
+        võistkonnad.setClosable(false);
+        
+        tabPane.getTabs().addAll(mäng, mängijad, võistkonnad);
         
         
         
-        Tab mängijad = new Tab();
-        mängijad.setText("Mängijad (F2)");
-        HBox hbox1 = new HBox();
-        hbox1.getChildren().add(new Label("Tab"));
-        hbox1.setAlignment(Pos.CENTER);
-        mängijad.setContent(hbox);
-        
-        tabPane.getTabs().addAll(mäng, mängijad);
+        tabPane.addEventHandler(KeyEvent.KEY_PRESSED, new KeyboardHandler());
         
         borderPane.setCenter(tabPane);
 	}
+	
+	
 }

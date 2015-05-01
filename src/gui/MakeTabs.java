@@ -17,7 +17,7 @@ public class MakeTabs {
         Tab mäng = new Tab("Mäng (F1)");
         mäng.setClosable(false);
         mäng.setId("mäng");
-        //mäng.setContent();
+        mäng.setContent(MängTab.make());
         
         
         Tab mängijad = new Tab("Mängijad (F2)");

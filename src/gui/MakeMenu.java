@@ -38,6 +38,7 @@ public class MakeMenu {
         // sündmusete käsitlejad
         exitMenuItem.setOnAction(actionEvent -> Platform.exit());
         abiMenuItem.setOnAction(event -> InformationWindow.make());
+        newMenuItem.setOnAction(event -> NewGameWindow.make());
         
 	}
 }

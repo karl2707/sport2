@@ -27,9 +27,7 @@ public class MakeTabs {
         Tab võistkonnad = new Tab("Võistkonnad (F3)");
         võistkonnad.setClosable(false);
         
-        tabPane.getTabs().addAll(mäng, mängijad, võistkonnad);
-        
-        
+        tabPane.getTabs().addAll(mäng, mängijad, võistkonnad);        
         
         tabPane.addEventHandler(KeyEvent.KEY_PRESSED, new KeyboardHandler());
         

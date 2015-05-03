@@ -1,5 +1,6 @@
 package application;
-	
+
+import jalgpall.*;
 import gui.MakeMenu;
 import gui.MakeTabs;
 import javafx.application.Application;
@@ -25,6 +26,8 @@ import javafx.scene.shape.Rectangle;
 
 
 public class Main extends Application {
+	public static Game soccerGame;
+	
 	@Override
 	public void start(Stage primaryStage) {
 		primaryStage.setTitle("Jalgpall");

@@ -7,12 +7,14 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 
 public class MängijadTab {
+	private static ObservableList<Player> items;
+	
 	public static BorderPane make() {
 		BorderPane pane = new BorderPane();
 		
 		ListView<Player> list = new ListView<>();
 		
-		ObservableList<Player> items = FXCollections.observableArrayList ();
+		items = FXCollections.observableArrayList ();
 		
 		list.setItems(items);
 		
@@ -23,8 +25,7 @@ public class MängijadTab {
 		
 	}
 	
-	private static void listBox() {
-		
+	static void listBox() {
 	}
 
 }

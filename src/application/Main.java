@@ -1,54 +1,65 @@
 package application;
 
-import jalgpall.*;
 import gui.MakeMenu;
 import gui.MakeTabs;
+import gui.NewGameWindow;
+import jalgpall.Game;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.geometry.Pos;
-import javafx.stage.Stage;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckMenuItem;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.RadioMenuItem;
-import javafx.scene.control.SeparatorMenuItem;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-
+import javafx.stage.Stage;
 
 public class Main extends Application {
-	public static Game soccerGame;
-	
+	private static Game soccerGame;
+	private static BorderPane borderPane, startPane;
+	private static Scene scene, startScene;
+	private static Stage mainStage;
+
 	@Override
 	public void start(Stage primaryStage) {
-		primaryStage.setTitle("Jalgpall");
-        Group root = new Group();
-        Scene scene = new Scene(root, 800, 600, Color.WHITE);
+		
+		mainStage = primaryStage;
+		mainStage.setTitle("Jalgpall");		
 
-        BorderPane borderPane = new BorderPane();
-                
-        // bind to take available space
-        borderPane.prefHeightProperty().bind(scene.heightProperty());
-        borderPane.prefWidthProperty().bind(scene.widthProperty());
-        
-        MakeMenu.make(borderPane, primaryStage); 
-        MakeTabs.make(borderPane);
-        
-        
-        root.getChildren().add(borderPane);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+		startPane = new BorderPane();
+		startPane.setId("pane");
+		
+		startScene = new Scene(startPane, 800, 600, Color.WHITE);
+		startScene.getStylesheets().addAll(this.getClass().getResource("application.css").toExternalForm());
+		
+		// bind to take available space
+		startPane.prefHeightProperty().bind(startScene.heightProperty());
+		startPane.prefWidthProperty().bind(startScene.widthProperty());
+		
+		MakeMenu.make(startPane, mainStage);
+		mainStage.setScene(startScene);
+		mainStage.setResizable(false);
+		mainStage.show();
 	}
-	
+
+	public static void doGame() {
+		soccerGame = new Game(NewGameWindow.getFirstTeam(),
+				NewGameWindow.getSecondTeam());
+
+		borderPane = new BorderPane();
+		scene = new Scene(borderPane, 800, 600, Color.WHITE);
+		borderPane.prefHeightProperty().bind(scene.heightProperty());
+		borderPane.prefWidthProperty().bind(scene.widthProperty());
+		MakeMenu.make(borderPane, mainStage);
+		MakeTabs.make(borderPane);
+		mainStage.setScene(scene);
+		mainStage.setResizable(false);
+		mainStage.show();
+	}
+
 	public static void main(String[] args) {
 		launch(args);
 	}

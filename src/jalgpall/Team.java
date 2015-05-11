@@ -4,35 +4,48 @@ import java.util.ArrayList;
 
 public class Team {
 	private String teamName;
-	private ArrayList<Player> players;
+	private ArrayList<Player> mainplayers;
+	private ArrayList<Player> benchplayers = null;
+
+	public ArrayList<Player> getMainplayers() {
+		return mainplayers;
+	}
+
+	public ArrayList<Player> getBenchplayers() {
+		return benchplayers;
+	}
 
 	/**
-	 * @param teamName Meeskonna nimi.
+	 * @param teamName
+	 *            Meeskonna nimi.
 	 */
-	public Team(String teamName, ArrayList<Player> players) {
+	public Team(String teamName, ArrayList<Player> mainplayers) {
 		super();
 		this.teamName = teamName;
-		this.players = players;
+		this.mainplayers = mainplayers;
+	}
+
+	public Team(String teamName, ArrayList<Player> mainplayers,
+			ArrayList<Player> benchplayers) {
+		super();
+		this.teamName = teamName;
+		this.mainplayers = mainplayers;
+		this.benchplayers = benchplayers;
 	}
 
 	String getTeamName() {
 		return teamName;
 	}
-	
-	/**
-	 * Lisatakse vigade listi uus viga.
-	 * @param foul Vea objekt. 
-	 */
-	
+
 	public String toString() {
 		return teamName;
 	}
-	
+
 	public Player getPlayerNumber(int id) {
-		for (Player a: players) {
+		for (Player a : mainplayers) {
 			if (a.getNumber() == id)
 				return a;
 		}
-		return players.get(0);
+		return mainplayers.get(0);
 	}
 }

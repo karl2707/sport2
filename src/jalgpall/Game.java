@@ -52,19 +52,16 @@ public class Game {
 		//Kui on tehtud värav suurendatakse seisu vastavalt
 		if (action instanceof Goal) {
 			standing[team-1] += 1;	
-		}
-		
+		}		
 		//Tegevus lisatakse listi
 		actions.add(action);
-	}
-	
+	}	
 	
 	//Getterid
 	
 	public ArrayList<Action> getActions() {
 		return actions;
 	}
-
 
 	/**
 	 * 

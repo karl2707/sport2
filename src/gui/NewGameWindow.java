@@ -72,7 +72,7 @@ public class NewGameWindow {
 
 		Label ft = new Label("Esimese meeskonna nimi: ");
 		grid.add(ft, 0, 3);
-		TextField ftTextField = new TextField("A");
+		TextField ftTextField = new TextField("FC Fauna");
 		grid.add(ftTextField, 1, 3);
 		Label ftN = new Label("Esimese meeskonna mängijate arv:");
 		grid.add(ftN, 0, 4);
@@ -81,7 +81,7 @@ public class NewGameWindow {
 
 		Label st = new Label("Teise meeskonna nimi: ");
 		grid.add(st, 0, 5);
-		TextField stTextField = new TextField("B");
+		TextField stTextField = new TextField("FC Kalju");
 		grid.add(stTextField, 1, 5);
 		Label stN = new Label("Teise meeskonna mängijate arv:");
 		grid.add(stN, 0, 6);
@@ -184,15 +184,15 @@ public class NewGameWindow {
 					grid.add(new Label("Varumängijad: "), 0, 4);
 					grid.add(benchgrid, 0, 5);
 				}
-				TextField playerName = new TextField();
+				TextField playerName = new TextField("A");
 				benchgrid.add(playerName, 0, j - stluN);
-				TextField playerNumber = new TextField();
+				TextField playerNumber = new TextField("1");
 				playerNumber.setPrefWidth(30);
 				benchgrid.add(playerNumber, 1, j - stluN);
 			} else {
-				TextField playerName = new TextField();
+				TextField playerName = new TextField("A");
 				maingrid.add(playerName, 0, j);
-				TextField playerNumber = new TextField();
+				TextField playerNumber = new TextField("1");
 				playerNumber.setPrefWidth(30);
 				maingrid.add(playerNumber, 1, j);
 			}

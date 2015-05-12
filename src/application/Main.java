@@ -12,7 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-	private static Game soccerGame;
+	public static Game soccerGame;
 	private static BorderPane borderPane, startPane;
 	private static Scene scene, startScene;
 	private static Stage mainStage;

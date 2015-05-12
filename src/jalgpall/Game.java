@@ -4,61 +4,65 @@ import java.util.ArrayList;
 import java.sql.*;
 
 public class Game {
-	//Isendiväljad
-	
+	// Isendiväljad
+
 	/**
 	 * Tõeväärtus, mis näitab, kas mäng käib või mitte
 	 */
 	private boolean gameRunning;
 	/**
-	 * Mängu alguse aeg. Võimaldab arvutada mitmendal minutil miski oimus. 
+	 * Mängu alguse aeg. Võimaldab arvutada mitmendal minutil miski oimus.
 	 */
 	private Time gameStartTime;
 	/**
-	 * List kõikidest mängus toimunud tegevustest. Sinna alla käivad väravad, vead ja kaardid.
+	 * List kõikidest mängus toimunud tegevustest. Sinna alla käivad väravad,
+	 * vead ja kaardid.
 	 */
 	private ArrayList<Action> actions = new ArrayList<Action>();
 	/**
-	 * Mängus olevate meeskondade arv. Järjend, kuna meeskondade arv mängu kestel ei muutu. 
+	 * Mängus olevate meeskondade arv. Järjend, kuna meeskondade arv mängu
+	 * kestel ei muutu.
 	 */
-	private Team[]  teamList;
+	private Team[] teamList;
 	/**
-	 * Kuigi kõikide väravate on registreeritud tegevuste listis on ka eraldi järjend, et saaks
-	 * kiiresti ja lihtsalt kätte mängu hetkeseisu. 
+	 * Kuigi kõikide väravate on registreeritud tegevuste listis on ka eraldi
+	 * järjend, et saaks kiiresti ja lihtsalt kätte mängu hetkeseisu.
 	 */
-	private int[] standing = {0, 0};
+	private int[] standing = { 0, 0 };
 
-	
-	//Konstruktorid
-	
+	// Konstruktorid
+
 	/**
 	 * Mängu loomise konstruktor
-	 * @param t1 Esimese meeskonna isend
-	 * @param t2 Teise meeskonna isend
+	 * 
+	 * @param t1
+	 *            Esimese meeskonna isend
+	 * @param t2
+	 *            Teise meeskonna isend
 	 */
 	public Game(Team t1, Team t2) {
-		//Meeskonnad sisestatakse järjendisse
-		teamList = new Team[] {t1, t2};
+		// Meeskonnad sisestatakse järjendisse
+		teamList = new Team[] { t1, t2 };
 	}
 
-	
-	//Setterid
-	
+	// Setterid
+
 	public void addAction(int id, int team, Action action) {
-		//Otsitakse vastava tegevuse sooritanud mängija isendi viit ning määratakse tegevusele
-		Player p = teamList[team-1].getPlayerNumber(id);
+		// Otsitakse vastava tegevuse sooritanud mängija isendi viit ning
+		// määratakse tegevusele
+		Player p = teamList[team].getPlayerNumber(id);
 		action.setPlayer(p);
-		
-		//Kui on tehtud värav suurendatakse seisu vastavalt
+
+		// Kui on tehtud värav suurendatakse seisu vastavalt
 		if (action instanceof Goal) {
-			standing[team-1] += 1;	
-		}		
-		//Tegevus lisatakse listi
+			standing[team] += 1;
+		}
+		// Tegevus lisatakse listi
 		actions.add(action);
-	}	
-	
-	//Getterid
-	
+	}
+
+	// Getterid
+
 	public ArrayList<Action> getActions() {
 		return actions;
 	}
@@ -70,34 +74,34 @@ public class Game {
 	public String getGameStartTime() {
 		return gameStartTime.toString();
 	}
-	
+
 	public String getGameRunningTime() {
 		return null;
 	}
-	
-	public String getTeamList() {
-		return "[1] " + teamList[0] + " [2] " + teamList[1];
+
+	public Team[] getTeamList() {
+		return teamList;
 	}
 
 	/**
-	 * Võimaldab vajadusel näha mängu seisu. 
-	 * @return Kahe elemendiline täisarvude järjend, kus on meeskondade hetkeseis
+	 * Võimaldab vajadusel näha mängu seisu.
+	 * 
+	 * @return Kahe elemendiline täisarvude järjend, kus on meeskondade
+	 *         hetkeseis
 	 */
 	public int[] getStanding() {
 		return standing;
 	}
-	
+
 	public String getTeamName(int id) {
 		return teamList[id].toString();
 	}
-	
-	
-	//Meetodid
-	
+
+	// Meetodid
+
 	public boolean isRunning() {
 		return gameRunning;
 	}
-
 
 	/**
 	 * Alustab mängu. Paneb paika mängu algushetke.
@@ -110,10 +114,10 @@ public class Game {
 	public void endGame() {
 		this.gameRunning = false;
 	}
-	
-	
+
 	/**
-	 * Tagastab, mis seisus on mäng. 
+	 * Tagastab, mis seisus on mäng.
+	 * 
 	 * @return Võitnud meekonna indeksi järjendis. Kui on viik tagastab -1.
 	 */
 	public int winner() {
@@ -122,7 +126,7 @@ public class Game {
 		else if (standing[1] > standing[0])
 			return 1;
 		else
-			//Mäng on jäänud viiki
+			// Mäng on jäänud viiki
 			return -1;
 	}
 }

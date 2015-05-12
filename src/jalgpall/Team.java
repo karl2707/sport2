@@ -8,6 +8,10 @@ public class Team {
 	private ArrayList<Player> benchplayers = null;
 	private int index;
 
+	int getIndex() {
+		return index;
+	}
+
 	public ArrayList<Player> getMainplayers() {
 		return mainplayers;
 	}

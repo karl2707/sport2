@@ -1,13 +1,10 @@
 package gui;
 
-import eventHandlers.KeyboardHandler;
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
+import eventHandlers.KeyboardHandler;
 
 public class MakeTabs {
 	public static void make(BorderPane borderPane) {

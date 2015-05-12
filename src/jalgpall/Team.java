@@ -6,6 +6,7 @@ public class Team {
 	private String teamName;
 	private ArrayList<Player> mainplayers;
 	private ArrayList<Player> benchplayers = null;
+	private int index;
 
 	public ArrayList<Player> getMainplayers() {
 		return mainplayers;
@@ -19,18 +20,20 @@ public class Team {
 	 * @param teamName
 	 *            Meeskonna nimi.
 	 */
-	public Team(String teamName, ArrayList<Player> mainplayers) {
+	public Team(String teamName, ArrayList<Player> mainplayers, int index) {
 		super();
 		this.teamName = teamName;
 		this.mainplayers = mainplayers;
+		this.index = index;
 	}
 
 	public Team(String teamName, ArrayList<Player> mainplayers,
-			ArrayList<Player> benchplayers) {
+			ArrayList<Player> benchplayers, int index) {
 		super();
 		this.teamName = teamName;
 		this.mainplayers = mainplayers;
 		this.benchplayers = benchplayers;
+		this.index = index;
 	}
 
 	String getTeamName() {

@@ -5,14 +5,8 @@ import gui.MakeTabs;
 import gui.NewGameWindow;
 import jalgpall.Game;
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -27,6 +21,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		
 		mainStage = primaryStage;
+		mainStage.getIcons().add(new Image(
+				this.getClass().getResource("ball.png").toExternalForm()));
 		mainStage.setTitle("Jalgpall");		
 
 		startPane = new BorderPane();
@@ -56,8 +52,6 @@ public class Main extends Application {
 		MakeMenu.make(borderPane, mainStage);
 		MakeTabs.make(borderPane);
 		mainStage.setScene(scene);
-		mainStage.setResizable(false);
-		mainStage.show();
 	}
 
 	public static void main(String[] args) {

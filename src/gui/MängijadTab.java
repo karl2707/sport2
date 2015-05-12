@@ -27,5 +27,9 @@ public class MängijadTab {
 	
 	static void listBox() {
 	}
+	
+	static void makePlayers() {
+		
+	}
 
 }

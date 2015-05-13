@@ -5,6 +5,7 @@ import jalgpall.Player;
 
 import java.util.ArrayList;
 
+import eventHandlers.FoulHandler;
 import eventHandlers.GoalHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -51,9 +52,14 @@ public class MängTab {
 
 		Button goalBtn = new Button("GOLAZO!");
 		goalBtn.setAlignment(Pos.TOP_CENTER);
-		functionBox.getChildren().add(goalBtn);
+		
+		Button foulBtn = new Button("FOULE!");
+		foulBtn.setAlignment(Pos.TOP_CENTER);
+		
+		functionBox.getChildren().addAll(goalBtn, foulBtn);
 
 		goalBtn.setOnAction(new GoalHandler());
+		foulBtn.setOnAction(new FoulHandler());
 
 		return pane;
 	}

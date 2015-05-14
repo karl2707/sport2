@@ -52,11 +52,8 @@ public class NewGameWindow {
 		newStage.initModality(Modality.APPLICATION_MODAL);
 		newStage.getIcons().add(new Image(
 				Main.class.getResource("ball.png").toExternalForm()));
-		GridPane grid = new GridPane();
-		grid.setAlignment(Pos.CENTER);
-		grid.setHgap(10);
-		grid.setVgap(10);
-		grid.setPadding(new Insets(10, 25, 25, 15));
+		GridPane grid = makeGridPane();
+		grid.setPadding(new Insets(10, 25, 10, 25));
 
 		Label stluN = new Label("Põhikoosseisu suurus (koos vv-ga): ");
 		grid.add(stluN, 0, 1);
@@ -137,7 +134,7 @@ public class NewGameWindow {
 	public static void makeNewTeamWindow(int stluN, String ftName, int ftN,
 			String stName, int stN, int i) {
 		GridPane grid = makeGridPane();
-		grid.setPadding(new Insets(5, 25, 25, 10));
+		grid.setPadding(new Insets(5, 25, 5, 25));
 
 		String tName;
 		int tN;

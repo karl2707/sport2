@@ -1,32 +1,27 @@
 package gui;
 
-import jalgpall.Goal;
-import jalgpall.Player;
-
-import java.util.ArrayList;
-
-import eventHandlers.FoulHandler;
-import eventHandlers.GoalHandler;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import application.Main;
+import eventHandlers.FoulHandler;
+import eventHandlers.GoalHandler;
+import eventHandlers.StartHandler;
 
 public class MängTab {
 	public static Text seis;
+	private static Button strtBtn;
+	public static Button goalBtn;
+	public static Button foulBtn;
+	public static VBox functionBox;
+	public static VBox ftInfoBox;
+	public static VBox stInfoBox;
 
 	public static BorderPane make() {
 		BorderPane pane = new BorderPane();
@@ -46,21 +41,42 @@ public class MängTab {
 		infoBox.getChildren().addAll(ftT, seis, stT);
 		pane.setTop(infoBox);
 
-		VBox functionBox = new VBox();
+		functionBox = makeVBox();
 		functionBox.setAlignment(Pos.CENTER);
 		pane.setCenter(functionBox);
 
-		Button goalBtn = new Button("GOLAZO!");
-		goalBtn.setAlignment(Pos.TOP_CENTER);
-		
-		Button foulBtn = new Button("FOULE!");
-		foulBtn.setAlignment(Pos.TOP_CENTER);
-		
-		functionBox.getChildren().addAll(goalBtn, foulBtn);
+		strtBtn = new Button("ALUSTA!");
+		strtBtn.setAlignment(Pos.TOP_CENTER);
 
+		goalBtn = new Button("GOLAZO!");
+		goalBtn.setAlignment(Pos.TOP_CENTER);
+
+		foulBtn = new Button("FOULE!");
+		foulBtn.setAlignment(Pos.TOP_CENTER);
+
+		functionBox.getChildren().add(strtBtn);
+
+		ftInfoBox = makeVBox();
+		ftInfoBox.setPrefWidth(300);
+		ftInfoBox.setAlignment(Pos.TOP_LEFT);
+		stInfoBox = makeVBox();
+		stInfoBox.setPrefWidth(300);
+		stInfoBox.setAlignment(Pos.TOP_RIGHT);
+		pane.setLeft(ftInfoBox);
+		pane.setRight(stInfoBox);
+		
 		goalBtn.setOnAction(new GoalHandler());
 		foulBtn.setOnAction(new FoulHandler());
+		strtBtn.setOnAction(new StartHandler());
+		
 
 		return pane;
+	}
+
+	static VBox makeVBox() {
+		VBox box = new VBox();
+		box.setSpacing(10);
+		box.setPadding(new Insets(10, 25, 25, 15));
+		return box;
 	}
 }

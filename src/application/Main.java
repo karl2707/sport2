@@ -2,9 +2,11 @@ package application;
 
 import gui.MakeMenu;
 import gui.MakeTabs;
+import gui.MängijadTab;
 import gui.NewGameWindow;
 import jalgpall.Game;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
@@ -44,13 +46,17 @@ public class Main extends Application {
 	public static void doGame() {
 		soccerGame = new Game(NewGameWindow.getFirstTeam(),
 				NewGameWindow.getSecondTeam());
-
 		borderPane = new BorderPane();
 		scene = new Scene(borderPane, 800, 600, Color.WHITE);
 		borderPane.prefHeightProperty().bind(scene.heightProperty());
+		MängijadTab.ftPlayers = FXCollections.observableArrayList(NewGameWindow.getFirstTeam().getMainplayers());
+		MängijadTab.stPlayers = FXCollections.observableArrayList(NewGameWindow.getSecondTeam().getMainplayers());
 		borderPane.prefWidthProperty().bind(scene.widthProperty());
 		MakeMenu.make(borderPane, mainStage);
 		MakeTabs.make(borderPane);
+		soccerGame = new Game(NewGameWindow.getFirstTeam(),
+				NewGameWindow.getSecondTeam());
+		
 		mainStage.setScene(scene);
 	}
 

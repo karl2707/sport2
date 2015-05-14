@@ -1,35 +1,35 @@
 package gui;
 
 import jalgpall.Player;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 
 public class MängijadTab {
-	private static ObservableList<Player> items;
-	
+	public static ObservableList<Player> ftPlayers;
+	public static ObservableList<Player> stPlayers;
+	public static ListView<Player> ftList;
+	public static ListView<Player> stList;
+
 	public static BorderPane make() {
 		BorderPane pane = new BorderPane();
-		
-		ListView<Player> list = new ListView<>();
-		
-		items = FXCollections.observableArrayList ();
-		
-		list.setItems(items);
-		
-		
-		pane.setLeft(list);
-		
+
+		ftList = new ListView<Player>();
+		ftList.setItems(ftPlayers);
+
+		stList = new ListView<Player>();
+		stList.setItems(stPlayers);
+
+		pane.setLeft(ftList);
+		pane.setRight(stList);
+
 		return pane;
-		
+
 	}
-	
-	static void listBox() {
-	}
-	
-	static void makePlayers() {
-		
+
+	public static void updatePlayers() {
+		ftList.setItems(ftPlayers);
+		stList.setItems(stPlayers);
 	}
 
 }

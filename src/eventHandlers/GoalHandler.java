@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -28,7 +29,7 @@ public class GoalHandler implements EventHandler<ActionEvent> {
 		newStage.getIcons().add(
 				new Image(Main.class.getResource("ball.png").toExternalForm()));
 
-		GridPane grid = new GridPane();
+		GridPane grid = makeGridPane();
 		grid.add(new Label("Värava löönud meeskond"), 0, 0, 2, 1);
 
 		Button ftBtn = new Button(Main.soccerGame.getTeamName(0));
@@ -38,7 +39,7 @@ public class GoalHandler implements EventHandler<ActionEvent> {
 
 		ftBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				GridPane grid = new GridPane();
+				GridPane grid = makeGridPane();
 				ArrayList<Player> mainPlayers = Main.soccerGame.getTeamList()[0]
 						.getMainplayers();
 				for (int j = 0; j < mainPlayers.size(); j++) {
@@ -64,7 +65,7 @@ public class GoalHandler implements EventHandler<ActionEvent> {
 
 		stBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				GridPane grid = new GridPane();
+				GridPane grid = makeGridPane();
 				ArrayList<Player> mainPlayers = Main.soccerGame.getTeamList()[1]
 						.getMainplayers();
 				for (int j = 0; j < mainPlayers.size(); j++) {
@@ -93,6 +94,14 @@ public class GoalHandler implements EventHandler<ActionEvent> {
 		newStage.setTitle("Värav");
 		newStage.setResizable(false);
 		newStage.show();
+	}
+	
+	GridPane makeGridPane() {
+		GridPane grid = new GridPane();
+		grid.setVgap(10);
+		grid.setHgap(10);
+		grid.setPadding(new Insets(10, 25, 25, 15));
+		return grid;
 	}
 
 }

@@ -1,7 +1,12 @@
 package jalgpall;
 
+import gui.MängTab;
+import gui.MängijadTab;
+
 import java.util.ArrayList;
-import java.sql.*;
+
+import javafx.collections.FXCollections;
+import javafx.scene.control.Label;
 
 public class Game {
 	// Isendiväljad
@@ -13,7 +18,7 @@ public class Game {
 	/**
 	 * Mängu alguse aeg. Võimaldab arvutada mitmendal minutil miski oimus.
 	 */
-	private Time gameStartTime;
+	private long gameStartTime;
 	/**
 	 * List kõikidest mängus toimunud tegevustest. Sinna alla käivad väravad,
 	 * vead ja kaardid.
@@ -42,7 +47,7 @@ public class Game {
 	 */
 	public Game(Team t1, Team t2) {
 		// Meeskonnad sisestatakse järjendisse
-		teamList = new Team[] { t1, t2 };
+		teamList = new Team[] { t1, t2 };		
 	}
 
 	// Setterid
@@ -59,6 +64,12 @@ public class Game {
 		}
 		// Tegevus lisatakse listi
 		actions.add(action);
+		if (team == 0) {
+			MängTab.ftInfoBox.getChildren().add(new Label(action.toString()));
+		}
+		else {
+			MängTab.stInfoBox.getChildren().add(new Label(action.toString()));
+		}
 	}
 
 	// Getterid
@@ -71,8 +82,8 @@ public class Game {
 	 * 
 	 * @return
 	 */
-	public String getGameStartTime() {
-		return gameStartTime.toString();
+	public long getGameStartTime() {
+		return this.gameStartTime;
 	}
 
 	public String getGameRunningTime() {
@@ -108,7 +119,7 @@ public class Game {
 	 */
 	public void startGame() {
 		this.gameRunning = true;
-		this.gameStartTime = new Time(System.currentTimeMillis());
+		this.gameStartTime = System.nanoTime();
 	}
 
 	public void endGame() {

@@ -1,5 +1,6 @@
 package gui;
 
+import eventHandlers.OpenHandler;
 import javafx.application.Platform;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Menu;
@@ -39,6 +40,7 @@ public class MakeMenu {
         exitMenuItem.setOnAction(actionEvent -> Platform.exit());
         abiMenuItem.setOnAction(event -> InformationWindow.make());
         newMenuItem.setOnAction(event -> NewGameWindow.make());
+        openMenuItem.setOnAction(new OpenHandler());
         
 	}
 }

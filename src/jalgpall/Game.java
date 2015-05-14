@@ -1,11 +1,11 @@
 package jalgpall;
 
 import gui.M‰ngTab;
-import gui.M‰ngijadTab;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 
-import javafx.collections.FXCollections;
 import javafx.scene.control.Label;
 
 public class Game {
@@ -18,6 +18,9 @@ public class Game {
 	/**
 	 * M‰ngu alguse aeg. Vıimaldab arvutada mitmendal minutil miski oimus.
 	 */
+
+	private LocalDate gameStartDate;
+
 	private long gameStartTime;
 	/**
 	 * List kıikidest m‰ngus toimunud tegevustest. Sinna alla k‰ivad v‰ravad,
@@ -47,7 +50,7 @@ public class Game {
 	 */
 	public Game(Team t1, Team t2) {
 		// Meeskonnad sisestatakse j‰rjendisse
-		teamList = new Team[] { t1, t2 };		
+		teamList = new Team[] { t1, t2 };
 	}
 
 	// Setterid
@@ -66,8 +69,7 @@ public class Game {
 		actions.add(action);
 		if (team == 0) {
 			M‰ngTab.ftInfoBox.getChildren().add(new Label(action.toString()));
-		}
-		else {
+		} else {
 			M‰ngTab.stInfoBox.getChildren().add(new Label(action.toString()));
 		}
 	}
@@ -120,6 +122,7 @@ public class Game {
 	public void startGame() {
 		this.gameRunning = true;
 		this.gameStartTime = System.nanoTime();
+		this.gameStartDate = LocalDate.now(ZoneId.systemDefault());
 	}
 
 	public void endGame() {
@@ -139,5 +142,11 @@ public class Game {
 		else
 			// M‰ng on j‰‰nud viiki
 			return -1;
+	}
+
+	public String getGameStartDate() {
+		return this.gameStartDate.getDayOfMonth() + "-"
+				+ this.gameStartDate.getMonth() + "-" +
+				this.gameStartDate.getYear();
 	}
 }

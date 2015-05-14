@@ -12,7 +12,7 @@ public class StartHandler implements EventHandler<ActionEvent> {
 		Main.soccerGame.startGame();
 		MängTab.functionBox.getChildren().clear();
 		MängTab.functionBox.getChildren().addAll(MängTab.goalBtn,
-				MängTab.foulBtn);
+				MängTab.foulBtn, MängTab.endBtn);
 	}
 
 }

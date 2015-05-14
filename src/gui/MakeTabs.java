@@ -7,9 +7,9 @@ import javafx.scene.layout.BorderPane;
 import eventHandlers.KeyboardHandler;
 
 public class MakeTabs {
-	public static void make(BorderPane borderPane) {
-        
-		TabPane tabPane = new TabPane();
+	public static TabPane tabPane;
+	public static void make(BorderPane borderPane) {        
+		tabPane = new TabPane();
 
         Tab mäng = new Tab("Mäng (F1)");
         mäng.setClosable(false);
@@ -21,10 +21,11 @@ public class MakeTabs {
         mängijad.setClosable(false);
         mängijad.setContent(MängijadTab.make());
         
-        Tab võistkonnad = new Tab("Võistkonnad (F3)");
-        võistkonnad.setClosable(false);
+        Tab logi = new Tab("Logivaataja (F3)");
+        logi.setClosable(false);
+        logi.setContent(LogiTab.make());
         
-        tabPane.getTabs().addAll(mäng, mängijad, võistkonnad);        
+        tabPane.getTabs().addAll(mäng, mängijad, logi);
         
         tabPane.addEventHandler(KeyEvent.KEY_PRESSED, new KeyboardHandler());
         

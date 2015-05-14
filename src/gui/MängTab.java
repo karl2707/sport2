@@ -86,12 +86,12 @@ public class MängTab {
 	public static void doEnd() {
 		functionBox.getChildren().clear();
 		if (Main.soccerGame.winner() >= 0) {
-			endLbl.setText(("Mängu võitis " + Main.soccerGame.getTeamName(Main.soccerGame.winner())));
+			endLbl.setText(("Mängu võitis " + Main.soccerGame
+					.getTeamName(Main.soccerGame.winner())));
 		} else {
 			endLbl.setText("Mäng jäi viiki!");
 		}
 		functionBox.getChildren().add(endLbl);
-		
-		
+
 	}
 }

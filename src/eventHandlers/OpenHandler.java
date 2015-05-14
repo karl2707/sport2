@@ -19,6 +19,6 @@ public class OpenHandler implements EventHandler<ActionEvent> {
 
 	private void openFile(File file) {
 		String path = file.getAbsolutePath();
-		
+		Main.doOpen(path);
 	}
 }

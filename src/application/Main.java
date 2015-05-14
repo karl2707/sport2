@@ -1,5 +1,6 @@
 package application;
 
+import gui.LogiTab;
 import gui.MakeMenu;
 import gui.MakeTabs;
 import gui.MängijadTab;
@@ -8,9 +9,11 @@ import jalgpall.Action;
 import jalgpall.Game;
 
 import java.awt.Desktop;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -52,6 +55,8 @@ public class Main extends Application {
 		startPane.prefWidthProperty().bind(startScene.widthProperty());
 
 		MakeMenu.make(startPane, mainStage);
+		mainStage.setMinHeight(startScene.getHeight());
+		mainStage.setMinWidth(startScene.getWidth());
 		mainStage.setScene(startScene);
 		mainStage.setResizable(false);
 		mainStage.show();
@@ -60,24 +65,14 @@ public class Main extends Application {
 	public static void doGame() {
 		soccerGame = new Game(NewGameWindow.getFirstTeam(),
 				NewGameWindow.getSecondTeam());
-		borderPane = new BorderPane();
-		scene = new Scene(borderPane, 800, 600, Color.WHITE);
-		borderPane.prefHeightProperty().bind(scene.heightProperty());
+		makeStage();
 		MängijadTab.ftPlayers = FXCollections.observableArrayList(NewGameWindow
 				.getFirstTeam().getMainplayers());
 		MängijadTab.stPlayers = FXCollections.observableArrayList(NewGameWindow
 				.getSecondTeam().getMainplayers());
 		borderPane.prefWidthProperty().bind(scene.widthProperty());
-		MakeMenu.make(borderPane, mainStage);
-		MakeTabs.make(borderPane);
 		soccerGame = new Game(NewGameWindow.getFirstTeam(),
 				NewGameWindow.getSecondTeam());
-
-		mainStage.setScene(scene);
-	}
-
-	public static void main(String[] args) {
-		launch(args);
 	}
 
 	public static void kirjutaFaili(ArrayList<Action> actions)
@@ -86,7 +81,20 @@ public class Main extends Application {
 				+ soccerGame.getGameStartTime() + ".txt";
 		BufferedWriter fw = new BufferedWriter(new FileWriter(
 				new File(fileName)));
+
+		fw.write(soccerGame.getTeamName(0) + " vs " + soccerGame.getTeamName(1));
+		fw.newLine();
+		fw.write(soccerGame.getTeamName(0) + " tegevus:");
+		fw.newLine();
 		for (Action action : actions) {
+			if (soccerGame.getTeamList()[0].getMainplayers().contains(action.getPlayer()))
+			fw.write(action.toString());
+			fw.newLine();
+		}
+		fw.write(soccerGame.getTeamName(1) + " tegevus:");
+		fw.newLine();
+		for (Action action : actions) {
+			if (soccerGame.getTeamList()[1].getMainplayers().contains(action.getPlayer()))
 			fw.write(action.toString());
 			fw.newLine();
 		}
@@ -97,7 +105,6 @@ public class Main extends Application {
 		} else {
 			fw.write("Mäng jäi viiki!");
 		}
-		fw.newLine();
 		fw.newLine();
 		fw.write(soccerGame.getGameStartDate());
 		fw.close();
@@ -111,5 +118,40 @@ public class Main extends Application {
 			System.out.println("Faili kirjutamisel tekkis viga!");
 			e.printStackTrace();
 		}
+	}
+
+	public static void doOpen(String path) {
+		File file = new File(path);
+		StringBuilder info = new StringBuilder();
+
+		BufferedReader br;
+		try {
+			br = new BufferedReader(new FileReader(file));
+			while (br.ready()) {
+				info.append(br.readLine() + "\n");
+			}
+		} catch (IOException e) {
+			System.out.println("Failist lugemine ebaõnnestus!");
+			e.printStackTrace();
+		}
+		LogiTab.doLogi(info.toString());
+		MakeTabs.tabPane.getSelectionModel().select(2);
+	}
+	
+	public static void makeStage() {
+		borderPane = new BorderPane();
+		scene = new Scene(borderPane, 800, 600, Color.WHITE);
+		borderPane.prefHeightProperty().bind(scene.heightProperty());
+		borderPane.prefWidthProperty().bind(scene.widthProperty());
+		MakeMenu.make(borderPane, mainStage);
+		MakeTabs.make(borderPane);
+		mainStage.setScene(scene);
+		mainStage.setMinHeight(scene.getHeight());
+		mainStage.setMinWidth(scene.getWidth());
+		mainStage.setResizable(true);
+	}
+
+	public static void main(String[] args) {
+		launch(args);
 	}
 }

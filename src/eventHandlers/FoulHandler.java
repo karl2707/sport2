@@ -1,5 +1,6 @@
 package eventHandlers;
 
+import gui.MängijadTab;
 import jalgpall.Foul;
 import jalgpall.Player;
 import jalgpall.RedCard;
@@ -129,6 +130,10 @@ public class FoulHandler implements EventHandler<ActionEvent> {
 																	.toString()))
 													.getNumber(), 0,
 											new RedCard());
+									MängijadTab.ftPlayers.remove(mainPlayers
+											.get(Integer.parseInt(btn.getId()
+													.toString())));
+									MängijadTab.updatePlayers();
 									newStage.close();
 								}
 							});
@@ -236,6 +241,10 @@ public class FoulHandler implements EventHandler<ActionEvent> {
 																	.toString()))
 													.getNumber(), 1,
 											new RedCard());
+									MängijadTab.ftPlayers.remove(mainPlayers
+											.get(Integer.parseInt(btn.getId()
+													.toString())));
+									MängijadTab.updatePlayers();
 									newStage.close();
 								}
 							});

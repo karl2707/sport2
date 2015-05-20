@@ -65,11 +65,11 @@ public class Main extends Application {
 	public static void doGame() {
 		soccerGame = new Game(NewGameWindow.getFirstTeam(),
 				NewGameWindow.getSecondTeam());
-		makeStage();
 		MängijadTab.ftPlayers = FXCollections.observableArrayList(NewGameWindow
 				.getFirstTeam().getMainplayers());
 		MängijadTab.stPlayers = FXCollections.observableArrayList(NewGameWindow
 				.getSecondTeam().getMainplayers());
+		makeStage();
 		borderPane.prefWidthProperty().bind(scene.widthProperty());
 		soccerGame = new Game(NewGameWindow.getFirstTeam(),
 				NewGameWindow.getSecondTeam());

@@ -1,7 +1,7 @@
 package jalgpall;
 
 public class RedCard extends Action {
-	
+
 	public RedCard(Player player, Team team) {
 		super(player, team);
 	}

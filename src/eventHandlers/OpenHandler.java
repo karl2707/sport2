@@ -22,3 +22,4 @@ public class OpenHandler implements EventHandler<ActionEvent> {
 		Main.doOpen(path);
 	}
 }
+

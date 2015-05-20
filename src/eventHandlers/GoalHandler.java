@@ -20,10 +20,9 @@ import application.Main;
 
 public class GoalHandler implements EventHandler<ActionEvent> {
 	private static Stage newStage;
-	private static int playerID;
-		
+
 	public void handle(ActionEvent ae) {
-		
+
 		newStage = new Stage();
 		newStage.initModality(Modality.APPLICATION_MODAL);
 		newStage.getIcons().add(
@@ -37,6 +36,9 @@ public class GoalHandler implements EventHandler<ActionEvent> {
 		grid.add(ftBtn, 0, 1);
 		grid.add(stBtn, 0, 2);
 
+		System.out.println(Main.soccerGame.getTeamList()[0].getMainplayers());
+		System.out.println(Main.soccerGame.getTeamList()[1].getMainplayers());
+
 		ftBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				GridPane grid = makeGridPane();
@@ -44,13 +46,17 @@ public class GoalHandler implements EventHandler<ActionEvent> {
 						.getMainplayers();
 				for (int j = 0; j < mainPlayers.size(); j++) {
 					Button btn = new Button(mainPlayers.get(j).toString());
+					btn.setId(Integer.toString(j));
+					System.out.println( mainPlayers.size());
+					System.out.println(Integer.parseInt(btn.getId()));
 					grid.add(btn, 0, j);
-					playerID = j;
 					btn.setOnAction(new EventHandler<ActionEvent>() {
 
 						public void handle(ActionEvent event) {
-
-							Main.soccerGame.addAction(mainPlayers.get(playerID)
+							System.out.println(Integer.parseInt(btn.getId()));
+							System.out.println(mainPlayers.get(Integer.parseInt(btn.getId())));
+							
+							Main.soccerGame.addAction(mainPlayers.get(Integer.parseInt(btn.getId()))
 									.getNumber(), 0, new Goal());
 							MängTab.seis.setText(Main.soccerGame.getStanding()[0]
 									+ " - " + Main.soccerGame.getStanding()[1]);
@@ -70,13 +76,12 @@ public class GoalHandler implements EventHandler<ActionEvent> {
 						.getMainplayers();
 				for (int j = 0; j < mainPlayers.size(); j++) {
 					Button btn = new Button(mainPlayers.get(j).toString());
+					btn.setId(Integer.toString(j));
 					grid.add(btn, 0, j);
-					playerID = j;
 					btn.setOnAction(new EventHandler<ActionEvent>() {
 
 						public void handle(ActionEvent event) {
-
-							Main.soccerGame.addAction(mainPlayers.get(playerID)
+							Main.soccerGame.addAction(mainPlayers.get(Integer.parseInt(btn.getId()))
 									.getNumber(), 1, new Goal());
 							MängTab.seis.setText(Main.soccerGame.getStanding()[0]
 									+ " - " + Main.soccerGame.getStanding()[1]);
@@ -95,7 +100,7 @@ public class GoalHandler implements EventHandler<ActionEvent> {
 		newStage.setResizable(false);
 		newStage.show();
 	}
-	
+
 	GridPane makeGridPane() {
 		GridPane grid = new GridPane();
 		grid.setVgap(10);

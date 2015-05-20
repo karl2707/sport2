@@ -59,6 +59,8 @@ public class Game {
 		// Otsitakse vastava tegevuse sooritanud mängija isendi viit ning
 		// määratakse tegevusele
 		Player p = teamList[team].getPlayerNumber(id);
+		System.out.println(id);
+		System.out.println(p);
 		action.setPlayer(p);
 
 		// Kui on tehtud värav suurendatakse seisu vastavalt

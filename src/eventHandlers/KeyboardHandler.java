@@ -26,8 +26,6 @@ public class KeyboardHandler implements EventHandler<KeyEvent> {
 		}
 		
 		if (õige)
-			tabs.getSelectionModel().select(id);
-		
+			tabs.getSelectionModel().select(id);		
 	}
-
 }
